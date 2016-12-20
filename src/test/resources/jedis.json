@@ -1,0 +1,18 @@
+{
+	'master':{
+		'ip':'${master.redis.host}',
+		'port':${master.redis.port},
+		'maxTotal':${master.redis.maxTotal},
+		'maxIdle':${master.redis.maxIdle},
+		'timeout':2000,
+		'password':'',
+		'database':0
+	},
+	'slave':{
+		'ip':'${slave.redis.host}',
+		'port':${slave.redis.port},
+		'maxTotal':${slave.redis.maxTotal},
+		'maxIdle':${slave.redis.maxIdle},
+		'timeout':2000
+	}
+}

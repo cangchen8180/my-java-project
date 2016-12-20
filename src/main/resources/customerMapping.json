@@ -1,0 +1,44 @@
+{
+  "customer": {
+    "properties": {
+      "name": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "id": {
+        "type": "long"
+      },
+      "shortName": {
+        "type": "string",
+        "analyzer": "ik",
+        "search_analyzer": "ik"
+      },
+      "registerTime": {
+        "format": "strict_date_optional_time||epoch_millis",
+        "type": "date"
+      },
+      "linkManList": {
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "long"
+          },
+          "fax": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "long"
+          }
+        }
+      }
+    }
+  }
+}
