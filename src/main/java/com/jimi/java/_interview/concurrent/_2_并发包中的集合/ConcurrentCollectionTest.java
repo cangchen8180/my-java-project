@@ -4,6 +4,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author jimi
@@ -23,7 +25,9 @@ public class ConcurrentCollectionTest {
 
         CopyOnWriteArraySet currentSet = new CopyOnWriteArraySet();
 
+        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
 
+        ReentrantLock lock = new ReentrantLock();
 
     }
 }
