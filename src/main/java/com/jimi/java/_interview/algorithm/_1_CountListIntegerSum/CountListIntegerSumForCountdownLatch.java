@@ -10,7 +10,7 @@ import java.util.concurrent.*;
  * @author jimi
  * @version 2016-12-26 22:58.
  */
-public class CountListIntegerSum {
+public class CountListIntegerSumForCountdownLatch {
 
     /*
     可用cpu数
@@ -18,7 +18,7 @@ public class CountListIntegerSum {
     private int threadCount = Runtime.getRuntime().availableProcessors();
     private ExecutorService executor = Executors.newFixedThreadPool(threadCount);
 
-    public CountListIntegerSum() {
+    public CountListIntegerSumForCountdownLatch() {
     }
 
     public long countSum(List<Integer> list) {
@@ -98,7 +98,7 @@ public class CountListIntegerSum {
             integerList.add(i + 1);
         }
 
-        CountListIntegerSum countListIntegerSum = new CountListIntegerSum();
+        CountListIntegerSumForCountdownLatch countListIntegerSum = new CountListIntegerSumForCountdownLatch();
         long sum = countListIntegerSum.countSum(integerList);
 
         //正确结果：5000050000

@@ -17,7 +17,11 @@ public class CountListIntegerSumForCyclicBarrier {
      */
     private int threadCount = Runtime.getRuntime().availableProcessors();
     private ExecutorService executor = Executors.newFixedThreadPool(threadCount);
-    private long sum;
+    /*
+     对于这个成员变量，线程不能保存它的私有拷贝，都强迫从主内存读取该变量值，
+     从而保证在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。
+     */
+    private volatile long sum;
 
     public CountListIntegerSumForCyclicBarrier() {
     }
@@ -58,6 +62,7 @@ public class CountListIntegerSumForCyclicBarrier {
                     System.out.println("[subList]index=" + index + ", subSum = " + subSum);
 
                     //在CountListIntegerSum对象上加锁
+                    //注：此处锁的不能是Long、Short、Integer等型对象，因为在加法计算时，会重新解箱和封箱，sum就不是原来对象了，进而同步块就失效了
                     synchronized (this) {
                         sum += subSum;
                     }

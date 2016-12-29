@@ -1,6 +1,6 @@
 package com.jimi.java._interview.algorithm;
 
-import com.jimi.java._interview.algorithm._1_CountListIntegerSum.CountListIntegerSum;
+import com.jimi.java._interview.algorithm._1_CountListIntegerSum.CountListIntegerSumForCountdownLatch;
 import junit.framework.TestCase;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class CountListIntegerSumTest extends TestCase {
             integerList.add(i + 1);
         }
 
-        CountListIntegerSum countListIntegerSum = new CountListIntegerSum();
+        CountListIntegerSumForCountdownLatch countListIntegerSum = new CountListIntegerSumForCountdownLatch();
         long sum = countListIntegerSum.countSum(integerList);
         System.out.println("sum = " + sum);
     }
