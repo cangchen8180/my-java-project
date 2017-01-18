@@ -20,6 +20,14 @@
     <!-- 依赖的jar包 -->
     <dependencies>
 
+        <!-- 好用的第三方工具包-->
+        <!-- guava-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+
         <!-- netty3 -->
         <!--<dependency>
             <groupId>io.netty</groupId>
