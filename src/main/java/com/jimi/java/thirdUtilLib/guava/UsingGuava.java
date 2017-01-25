@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap;
  * @author jimi
  * @version 2017-01-14 12:25.
  */
-public class UseGuava {
+public class UsingGuava {
 
     public static void main(String[] args) {
 
@@ -128,7 +128,7 @@ public class UseGuava {
         String digit = CharMatcher.javaDigit().retainFrom(sequence);
         System.out.println("digit = " + digit);
         // --- 自己实现 ---
-        UseGuava useGuava = new UseGuava();
+        UsingGuava useGuava = new UsingGuava();
         String digit1 = useGuava.getDigit(sequence);
         System.out.println("digit1 = " + digit1);
 
