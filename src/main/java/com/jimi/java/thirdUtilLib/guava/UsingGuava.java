@@ -4,11 +4,13 @@ import com.google.common.base.*;
 import com.google.common.collect.MapMaker;
 import com.google.common.collect.Ordering;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.math.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author jimi
@@ -16,7 +18,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class UsingGuava {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         //--------------- 前置条件-使用和避免null ------------
         //赋值
@@ -125,7 +127,7 @@ public class UsingGuava {
         //字符串处理，只保留数字
         String sequence = "23你00001好4";
         // --- guava 提供 ---
-        String digit = CharMatcher.javaDigit().retainFrom(sequence);
+        String digit = CharMatcher.DIGIT.retainFrom(sequence);
         System.out.println("digit = " + digit);
         // --- 自己实现 ---
         UsingGuava useGuava = new UsingGuava();
@@ -133,10 +135,29 @@ public class UsingGuava {
         System.out.println("digit1 = " + digit1);
 
         //用*号替换所有数字
-        String s = CharMatcher.javaDigit().replaceFrom(sequence, "*");
+        String s = CharMatcher.DIGIT.replaceFrom(sequence, "*");
         System.out.println("s = " + s);
 
-        ConcurrentMap<String, Function<String, String>> map = new MapMaker().makeMap();
+        ConcurrentMap<String, String> map = new MapMaker()
+                /*.concurrencyLevel(8)
+                .softKeys()
+                .weakValues()
+                .maximumSize(100)*/
+                .expireAfterWrite(5, TimeUnit.SECONDS)
+                .makeComputingMap(new Function<String, String>() {
+                    @Override
+                    public String apply(String input) {
+                        return RandomUtils.nextInt()+"";
+                    }
+                });
+
+        for (int i = 0; i < 5; ++i) {
+            String value = map.get(i + "");
+            System.out.println("key=" + i + ", value = " + value);
+            Thread.sleep(2000);
+        }
+
+        System.out.println("map = " + map.toString());
 
 
     }

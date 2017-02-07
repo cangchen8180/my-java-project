@@ -57,6 +57,15 @@ static class Node<K,V>{
 - HashTable是线程安全，HashMap是不安全的。
 - HashTable中，key和value都不允许出现null值; HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。
 
+### ConcurrentHashMap能完全替代HashTable吗？
+答：HashTable虽然性能上不如ConcurrentHashMap，但并不能完全被取代，两者的迭代器的一致性不同的，HashTable的迭代器是强一致性的，而ConcurrentHashMap是弱一致的。 ConcurrentHashMap的get，clear，iterator 都是弱一致性的。 Doug Lea 也将这个判断留给用户自己决定是否使用ConcurrentHashMap。
+
+### 为什么ConcurrentHashMap是弱一致的？？？
+答：
+
+??????????????
+
+
 ### TreeSet和TreeMap的区别
 - TreeMap对key按红黑树的排序二叉数排序每个元素（Entry），保证所有key都从小到大排序。
 - TreeSet基于TreeMap实现，类似HashSet基于HashMap实现。

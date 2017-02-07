@@ -33,6 +33,28 @@ public class CollectionTest {
         //如何获取所有元素，数组中，包括相同位置的链表中的元素？？？
         Set<String> keySet = hashMap.keySet();
 
-
+//        hashMap.put()
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

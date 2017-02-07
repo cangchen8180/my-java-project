@@ -22,10 +22,15 @@
 
         <!-- 好用的第三方工具包-->
         <!-- guava-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>20.0</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
         </dependency>
 
         <!-- javatuples - 提供支持返回多个元素的一些类。 -->
