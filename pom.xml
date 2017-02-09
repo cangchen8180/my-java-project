@@ -20,6 +20,13 @@
     <!-- 依赖的jar包 -->
     <dependencies>
 
+        <!-- redis client-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+
         <!-- 好用的第三方工具包-->
         <!-- guava-->
         <!--<dependency>
