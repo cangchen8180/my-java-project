@@ -1,4 +1,4 @@
-package com.jimi.java._interview.java._1_double;
+package com.jimi.java._interview.fundamental._1_double;
 
 import java.math.BigDecimal;
 

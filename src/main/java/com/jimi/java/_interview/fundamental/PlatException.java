@@ -1,4 +1,4 @@
-package com.jimi.java._interview.java;
+package com.jimi.java._interview.fundamental;
 
 /**
  * @author jimi

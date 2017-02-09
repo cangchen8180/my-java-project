@@ -1,4 +1,4 @@
-package com.jimi.java._interview.java._4_int;
+package com.jimi.java._interview.fundamental._2_int;
 
 /**
  *

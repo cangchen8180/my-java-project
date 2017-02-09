@@ -1,4 +1,4 @@
-package com.jimi.java._interview._1_collection;
+package com.jimi.java._interview.collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.jimi.java._interview.java._0_string;
+package com.jimi.java._interview.fundamental._0_string;
 
 import redis.clients.jedis.Jedis;
 

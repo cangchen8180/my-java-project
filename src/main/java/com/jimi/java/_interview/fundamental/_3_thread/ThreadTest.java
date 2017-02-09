@@ -1,4 +1,4 @@
-package com.jimi.java._interview.java._5_thread;
+package com.jimi.java._interview.fundamental._3_thread;
 
 /**
  * @author jimi
