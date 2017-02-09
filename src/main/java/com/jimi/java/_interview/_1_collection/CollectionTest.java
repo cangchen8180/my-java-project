@@ -1,12 +1,10 @@
-package com.jimi.java._interview.java._2_collection;
+package com.jimi.java._interview._1_collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  *  常用集合对比
@@ -34,6 +32,7 @@ public class CollectionTest {
         Set<String> keySet = hashMap.keySet();
 
 //        hashMap.put()
+        ConcurrentHashMap<String, Integer> curtHashMap = new ConcurrentHashMap<>(16);
     }
 }
 

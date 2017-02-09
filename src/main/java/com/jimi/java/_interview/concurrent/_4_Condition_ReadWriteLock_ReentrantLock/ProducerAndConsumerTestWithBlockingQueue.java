@@ -1,12 +1,11 @@
 package com.jimi.java._interview.concurrent._4_Condition_ReadWriteLock_ReentrantLock;
 
+import sun.nio.ch.ThreadPool;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -24,16 +23,23 @@ public class ProducerAndConsumerTestWithBlockingQueue {
 
     BlockingQueue<Integer> queue = new LinkedBlockingDeque<>(20);
 
-    private void test(){
+    private void test() {
+        /*
+        注：参阿里巴巴开发手册，使用线程池时，不建议使用Executors，容易造成内存溢出。
+        而是使用ThreadPoolExecutor
+         */
         ExecutorService executor = Executors.newCachedThreadPool();
 
-        for(int i = 0; i < 5; ++ i){
+        /*LinkedBlockingQueue<Runnable> queue = new LinkedBlockingQueue<>();
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 10, 1, TimeUnit.DAYS, queue);*/
+
+        for (int i = 0; i < 5; ++i) {
             executor.submit(new Producer(i));
             executor.submit(new Consumer(i));
         }
 
         try {
-            Thread.sleep(10*1000);
+            Thread.sleep(10 * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
