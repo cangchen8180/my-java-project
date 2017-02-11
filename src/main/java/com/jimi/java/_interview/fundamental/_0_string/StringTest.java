@@ -8,6 +8,8 @@ import redis.clients.jedis.Jedis;
  */
 public class StringTest {
     public static void main(String[] args) {
+
+        /////////////////// 字符串转字节 ///////////////////////
         Integer id = 20;
         System.out.println("id.byteValue() = " + id.byteValue());
 
@@ -46,5 +48,27 @@ public class StringTest {
         String set = jedis.set(bytes, bytes);
         System.out.println("idStr.getBytes() = " + bytes);
         System.out.println("idStr.getBytes() = " + bytes.toString());
+
+
+        ///////////////////// String 字符串取等 ////////////////////
+        String str = "hcTest";
+        System.out.println("str.hashCode() = " + str.hashCode());
+
+        String strHellAndO = new String("hell") + new String("o");
+        String strIntern = strHellAndO.intern();
+        String strHello = "hello";
+
+        System.out.println("strHellAndO == strIntern = " + (strHellAndO == strIntern));
+        System.out.println("strIntern ==strHello= " + (strIntern == strHello));
+        System.out.println("strHello == strHellAndO = " + (strHello == strHellAndO));
+
+        ///////////////////// String hashCode算法 ////////////////////
+        System.out.println("\"ji\".hashCode() = " + "ji".hashCode());
+        System.out.println("\"gi\".hashCode() = " + "gi".hashCode());
+        System.out.println("\"jm\".hashCode() = " + "jm".hashCode());
+
+        System.out.println("\"jim\".hashCode() = " + "jim".hashCode());
+        System.out.println("\"jimi\".hashCode() = " + "jimi".hashCode());
+
     }
 }

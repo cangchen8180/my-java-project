@@ -3,14 +3,17 @@
 答：[1、Java中重要集合类的对比.md]()
 2、hashMap哈希算法是怎样的，如何做到均匀hash的，做了哪些优化？hashMap中hash算法怎样的，什么情况下效率最低、最快？ 
 答：[2、HashMap实现详解.md]()
-3、treeMap的红黑树
--- 有关红黑树的面试题是怎样的？？？
-4、jdk中常用的设计模式，及应用
+3、jdk中常用的设计模式，及应用
 答：[JDK中常用设计模式的应用.md]()
-5、concurrentHashMap的锁分段技术？读时为什么不加锁？为什么是弱一致？
+4、concurrentHashMap的锁分段技术？读时为什么不加锁？为什么是弱一致？
 答：[2、HashSet、HashMap、HashTable、TreeSet和TreeMap区别.md]()
 
+5、treeMap的红黑树
+-- 有关红黑树的面试题是怎样的？？？
+
 6、string的hashcode算法
+答：[String 类中 hashCode() 方法详解.md]()
+
 7、Collections.sort()如何排序的
 
 # jvm

@@ -1,9 +1,6 @@
 package com.jimi.java._interview.collection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -33,6 +30,21 @@ public class CollectionTest {
 
 //        hashMap.put()
         ConcurrentHashMap<String, Integer> curtHashMap = new ConcurrentHashMap<>(16);
+
+        List<Integer> iList = new ArrayList<>();
+        iList.add(3);
+        iList.add(4);
+        iList.add(1);
+        iList.add(2);
+        iList.add(5);
+        System.out.println("=============排序前=============");
+        System.out.println("iList = " + iList);
+
+        System.out.println("");
+        Collections.sort(iList);
+        System.out.println("=============排序后=============");
+        System.out.println("iList = " + iList);
+
     }
 }
 
