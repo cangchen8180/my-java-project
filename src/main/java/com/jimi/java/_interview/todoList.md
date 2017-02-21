@@ -13,13 +13,9 @@
 
 6、string的hashcode算法
 答：[String 类中 hashCode() 方法详解.md]()
-
 7、Collections.sort()如何排序的
+答：[5、Collections.sort方法的算法实现.md]()
 
-# jvm
-1、jvm运行时问题
-2、性能调优
-3、堆 栈 何时发生OutOfMemory异常？
 
 
 # mysql
@@ -32,10 +28,42 @@
 4、倒排索引？索引的优点 缺点
 
 
+
 # spring
 1、spring启动过程？
 1、spring实现原理，用什么数据结构管理bean依赖的？
 2、ioc和aop如何实现的？
+
+
+
+# 分布式
+1、zk的分布式锁, 和redis的分布式锁的区别？？
+答：zk实现的分布式锁，可以持久化，可靠性更好，但频繁的创建、删除节点，性能开销较大，适合并发量不大、对可靠性要求较高的核心业务场景。
+redis的效率更高，但对于客户端宕机等情况不能优雅释放锁，也不够可靠。
+
+2、kafka负载均衡的实现，选举leader的实现
+3、分布式事务如何实现的。
+4、happens-before机制是什么鬼？
+
+
+web
+1、长连接和短连接区别，如何保证长连接？
+2、session的实现原理，与cookie的关系？
+3、分布式session的四种实现方式？
+
+
+# 线程
+1、thread 多次start 会怎样？
+答：第二次调start()方法时，就会抛IllegalThreadStateException运行时异常。但第一次start的线程还会执行完。
+
+
+
+
+# jvm
+1、jvm运行时问题
+2、性能调优
+3、堆 栈 何时发生OutOfMemory异常？
+
 
 
 # 算法
@@ -47,19 +75,4 @@
 6、如何最少时间复杂度求一个大数组中的第k大的数
 
 
-# 分布式
-1、zk的分布式锁, 和redis的分布式锁的区别？？
-2、kafka负载均衡的实现，选举leader的实现
-3、分布式事务如何实现的。
-4、happens-before机制是什么鬼？
 
-5、分布式session的四种实现方式？
-
-web
-1、长连接和短连接区别，如何保证长连接？
-2、session的实现原理，与cookie的关系？
-
-
-# 线程
-1、thread 多次start 会怎样？
-答：第二次调start()方法时，就会抛IllegalThreadStateException运行时异常。但第一次start的线程还会执行完。
