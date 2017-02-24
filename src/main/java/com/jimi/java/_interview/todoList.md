@@ -18,6 +18,22 @@
 
 
 
+# 线程
+1、thread 多次start 会怎样？
+答：第二次调start()方法时，就会抛IllegalThreadStateException运行时异常。但第一次start的线程还会执行完。
+
+
+
+web
+1、长连接和短连接区别，如何保证长连接？
+答：[1、短连接、长连接、http和websocket的区别.md]()
+2、session的实现原理，与cookie的关系？
+答：[2、session的实现原理，与cookie的关系.md]()
+3、分布式session的四种实现方式？
+答：[2、session的实现原理，与cookie的关系.md]()
+
+
+
 # mysql
 1、死锁的条件？如何避免死锁？
 答：[3、死锁及解决办法.md]()
@@ -30,9 +46,13 @@
 
 
 # spring
-1、spring启动过程？
-1、spring实现原理，用什么数据结构管理bean依赖的？
-2、ioc和aop如何实现的？
+1、spring mvc启动过程？
+
+2、spring mvc如何管理url和controller的映射
+答：[2、spring mvc如何管理url和controller的映射.md]()
+
+3、spring mvc实现原理，用什么数据结构管理bean依赖的？
+4、ioc和aop如何实现的？
 
 
 
@@ -45,19 +65,6 @@ redis的效率更高，但对于客户端宕机等情况不能优雅释放锁，
 2、kafka负载均衡的实现，选举leader的实现
 3、分布式事务如何实现的。
 4、happens-before机制是什么鬼？
-
-
-web
-1、长连接和短连接区别，如何保证长连接？
-答：[1、短连接、长连接、http和websocket的区别.md]()
-
-2、session的实现原理，与cookie的关系？
-3、分布式session的四种实现方式？
-
-
-# 线程
-1、thread 多次start 会怎样？
-答：第二次调start()方法时，就会抛IllegalThreadStateException运行时异常。但第一次start的线程还会执行完。
 
 
 
