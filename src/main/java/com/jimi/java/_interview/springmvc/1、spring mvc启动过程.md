@@ -9,9 +9,12 @@ Spring MVC启动过程依据这两个配置大致分为两个过程：
 1. ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。
 2. DispatcherServlet初始化，建立自己的上下文，也注册到ServletContext中。
 
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4"xmlns="http://java.sun.com/xml/ns/j2ee"xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:schemaLocation="http://java.sun.com/xml/ns/j2eehttp://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app id="WebApp_ID" version="2.4"
+ xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2eehttp://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 <listener>
 　　<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 </listener>

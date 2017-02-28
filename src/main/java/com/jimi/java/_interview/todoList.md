@@ -47,11 +47,12 @@ web
 
 # spring
 1、spring mvc启动过程？
-
+答：[1、spring mvc启动过程.md]()
 2、spring mvc如何管理url和controller的映射
 答：[2、spring mvc如何管理url和controller的映射.md]()
 
 3、spring mvc实现原理，用什么数据结构管理bean依赖的？
+答：[3、spring mvc如何管理bean依赖.md]()
 4、ioc和aop如何实现的？
 
 
