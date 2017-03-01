@@ -11,7 +11,6 @@ import java.util.*;
  */
 public class JdkCode {
 
-
     public static void main(String[] args) {
 
         // ---- 1、组合模式 -----
