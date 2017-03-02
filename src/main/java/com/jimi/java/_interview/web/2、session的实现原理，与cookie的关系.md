@@ -1,6 +1,7 @@
 ## Session的实现原理，与Cookie的关系
 
 由于HTTP是无状态的，浏览器每次访问web页面，都是打开到Server的独立连接，并且不维护客户的上下文信息。
+
 如果需要维护上下文信息，比如用户登录后的信息。有三种实现方式：Cookie、url重写和隐藏表单域。但cookie方式更常用。
 
 ### 区别
@@ -147,6 +148,7 @@ private void processExpires() {
 
 #### 3、Tomcat集群Session复制方式
 这种方式基于IP组播(multicast)来完成的。
+
 简单的说，就是需要进行集群的tomcat通过配置 **统一的组播IP和端口来确定一个集群组**, 当一个node的session发生变更的时候, 它会向IP组播发送变更的数据, IP组播会将数据分发给所有组里的其他成员(node)。
 
 **优点：**
@@ -159,6 +161,7 @@ private void processExpires() {
 
 #### 4、Redis集群方式共享Session
 将Session存入分布式redis集群中，当用户访问不同节点时先从缓存中拿Session信息。
+
 如图，
 ![redis实现分布式session](https://github.com/cangchen8180/my-java-project/blob/master/src/main/java/com/jimi/java/_interview/web/2587879-b650ae9ea2d8574c.png)
 

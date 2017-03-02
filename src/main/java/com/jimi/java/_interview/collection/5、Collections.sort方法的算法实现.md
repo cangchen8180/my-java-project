@@ -106,6 +106,7 @@ private static void mergeSort(Object[] src, Object[] dest, int low, int high, in
 ```    
 
 对于数组小于7的情况，直接用swap排序，可以提高程序的执行效率。
+
 **ps：为什么是7？**
 
 #### ComparableTimSort实现

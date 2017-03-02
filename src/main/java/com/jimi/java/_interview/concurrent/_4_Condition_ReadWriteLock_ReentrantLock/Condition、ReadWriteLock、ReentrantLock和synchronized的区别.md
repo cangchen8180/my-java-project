@@ -15,21 +15,26 @@
 ReentrantLock 相对 synchronized 而言还是增加了一些高级功能，主要有以下三项：
 
 - 等待可中断
+
     当持有锁的线程长期不释放锁时，正在等待的线程可以选择放弃等待，改为处理其他事情，它对处理执行时间非常上的同步块很有帮助。而在等待由 synchronized 产生的互斥锁时，会一直阻塞，是不能被中断的。
 
 - 可实现公平锁
+
     多个线程在等待同一个锁时，必须按照申请锁的时间顺序排队等待，而非公平锁则不保证这点，在锁释放时，任何一个等待锁的线程都有机会获得锁。synchronized 中的锁时非公平锁，ReentrantLock 默认情况下也是非公平锁，但可以通过构造方法 ReentrantLock（ture）来要求使用公平锁。
 
 - 锁可以绑定多个条件
+
     ReentrantLock 对象可以同时绑定多个 Condition 对象（名曰：条件变量或条件队列），而在 synchronized 中，锁对象的 wait()和 notify()或 notifyAll()方法可以实现一个隐含条件，但如果要和多于一个的条件关联的时候，就不得不额外地添加一个锁，而 ReentrantLock 则无需这么做，只需要多次调用 newCondition()方法即可。而且我们还可以通过绑定 Condition 对象来判断当前线程通知的是哪些线程（即与 Condition 对象绑定在一起的其他线程）。
 
 TIP：《Java 并发编程实践》一书给出了使用 ReentrantLock 的最佳时机：
+
 > 当你需要以下高级特性时，才应该使用：可定时的、可轮询的与可中断的锁获取操作，公平队列，或者非块结构的锁。否则，请使用 synchronized
 
 JDK1.6，发生了变化，对 synchronize 加入了很多优化措施，有自适应自旋，锁消除，锁粗化，轻量级锁，偏向锁等等。导致在 JDK1.6 上 synchronize 的性能并不比 Lock 差。官方也表示，他们也更支持 synchronize，在未来的版本中还有优化余地，所以还是提倡在 synchronized 能实现需求的情况下，优先考虑使用 synchronized 来进行同步。
 
 #### 可中断锁实例
 ReentrantLock 有两种锁：忽略中断锁和响应中断锁。忽略中断锁与 synchronized 实现的互斥锁一样，不能响应中断，而响应中断锁可以响应中断。
+
 当用 synchronized 中断对互斥锁的等待时，并不起作用，该线程依然会一直等待，如下面的实例：
 
 ```java
@@ -239,6 +244,7 @@ class Writer2 extends Thread {
 ### Condition和Lock（实现：ReentrantLock）的区别
 #### Condition
 Condition（也称为条件队列 或条件变量）为线程提供了一种手段，在某个状态条件下直到接到另一个线程的通知，一直处于挂起状态（即“等待”）。因为访问此共享状态信息发生在不同的线程中，所以它必须受到保护，因此要将某种形式的锁与 Condition相关联。
+
 Condition 实例实质上被绑定到一个锁上。要为特定 Lock 实例获得 Condition 实例，可以使用其 newCondition() 方法。
 
 生产者——消费者模型一文中，我们用 synchronized 实现互斥，并配合使用 Object 对象的 wait（）和 notify()或 notifyAll()方法来实现线程间协作。Java 5 之后，我们可以用 ReentrantLock 锁配合 Condition 对象上的 await()和 signal()或 signalAll()方法来实现线程间协作。在 ReentrantLock 对象上 newCondition()可以得到一个 Condition 对象，可以通过在 Condition 上调用 await()方法来挂起一个任务（线程），通过在 Condition 上调用 signal()来通知任务，从而唤醒一个任务，或者调用 signalAll()来唤醒所有在这个 Condition 上被其自身挂起的任务。另外，如果使用了公平锁，signalAll()的与 Condition 关联的所有任务将以 FIFO 队列的形式获取锁，如果没有使用公平锁，则获取锁的任务是随机的，这样我们便可以更好地控制处在 await 状态的任务获取锁的顺序。与 notifyAll()相比，signalAll()是更安全的方式。另外，它可以指定唤醒与自身 Condition 对象绑定在一起的任务。
@@ -355,7 +361,9 @@ public class ProducerAndConsumer2 {
 
 ### ReentrantLock和ReadWriteLock（实现：ReentrantReadWriteLock）的区别
 Lock 接口，Java 5 中引入了新的锁机制——java.util.concurrent.locks 中的显式的互斥锁。
+
 它提供了比synchronized 更加广泛的锁定操作。
+
 Lock 接口有 3 个实现它的类
 
 - ReentrantLock：重入锁
@@ -365,6 +373,7 @@ Lock 接口有 3 个实现它的类
 #### 使用
 
 ReentrantLock使用
+
 lock 必须被显式地创建、锁定和释放，为了可以使用更多的功能，一般用 ReentrantLock 为其实例化。为了保证锁最终一定会被释放（可能会有异常发生），要把互斥区放在 try 语句块内，并在 finally 语句块中释放锁，尤其当有 return 语句时，return 语句必须放在 try 字句中，以确保 unlock()不会过早发生，从而将数据暴露给第二个任务。因此，采用 lock 加锁和释放锁的一般形式如下：
 
 ```java

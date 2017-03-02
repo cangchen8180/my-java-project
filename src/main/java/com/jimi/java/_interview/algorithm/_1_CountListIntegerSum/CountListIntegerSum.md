@@ -14,6 +14,7 @@
 - 线程个数：使用Runtime.getRuntime.availableProcessors()。
 - 线程管理：使用线程池方式，如Executors.newFixedThreadPool(threadCount)。
 - **线程同步控制的辅助类，包括CountDownLatch和CyclicBarrier，选择哪个？**
+
     答案是，使用CyclicBarrier。
     
     原因参考[CountDownLatch、CyclicBarrier和Semaphore的区别](CountDownLatch、CyclicBarrier和Semaphore的区别.md)

@@ -37,6 +37,7 @@ protected void detectHandlers() throws BeansException {
 ```    
 
 在AbstractDetectingHandlerMapping中，determineUrlsForHandler(String beanName)是一个抽象方法，由具体的子类给出实现，这里我们需要关注的是DefaultAnnotationHandlerMapping类是如何实现该方法的。
+
 DefaultAnnotationHandlerMapping#determineUrlsForHandler()源码如下，
 
 ```java
@@ -89,6 +90,7 @@ protected String[] determineUrlsForHandler(String beanName) {
 ```
 
 上述代码是Spring处理类级别的RequestMapping注解，但是RequestMapping注解也可以定义在方法级别上，determineUrlsForHandlerMethods()方法是获取该类中定义了RequestMapping注解的方法能够处理的所有 URL。
+
 DefaultAnnotationHandlerMapping#determineUrlsForHandlerMethods()源码如下，
 
 ```java
@@ -119,6 +121,7 @@ protected String[] determineUrlsForHandlerMethods(Class<?> handlerType) {
 ```
 
 分别获取了类和方法级别的RequestMapping中定义的URL后，基本上完成了URL的提取工作，但是有一种情况需要处理：类和方法中同时定义了URL，这两个URL是如何合并的呢？规则又是怎样的呢？看一下URL合并代码,
+
 AntPathMatcher#combine()源码如下，
 
 ```java
@@ -192,6 +195,7 @@ public String combine(String pattern1, String pattern2) {
 ```
 
 通过以上的处理，基本上完成了bean可以处理的URL信息的提取，在代码中有个方法经常出现：addUrlsForPath()，该方法的目的是将 RequestMapping中定义的path添加的URL集合中，如果指定PATH不是以默认的方式结尾，那么Spring将默认的结尾添加到该 path上，并将处理结果添加到url集合中。
+
 DefaultAnnotationHandlerMapping#addUrlsForPath()源码如下，
 
 ```java
@@ -276,6 +280,7 @@ protected void registerHandler(String urlPath, Object handler) throws BeansExcep
 
 ### 根据request查询相应处理controller
 从前端控制（DispatcherServlet）开始往后分析，web.xml配置的符合的url都会由DispatcherServlet的doService()处理，
+
 DispatcherServlet#doService()源码如下，
 
 ```java
@@ -424,6 +429,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 ```
 
 doDispatch方法中的mappedHandler = getHandler(processedRequest);就是根据request中的请求url获取相应的controller实例。
+
 DispatcherServlet#getHandler()源码如下，
 
 ```java
@@ -484,6 +490,7 @@ public final HandlerExecutionChain getHandler(HttpServletRequest request) throws
 ```
 
 getHandlerInternal()就是从上面加载保存url和controller对应关系的的handlerMap中取controller实例。
+
 AbstractUrlHandlerMapping#getHandlerInternal()源码如下，
 
 ```java
@@ -597,6 +604,7 @@ protected Object lookupHandler(String urlPath, HttpServletRequest request) throw
 
 ### spring mvc 获取所有的controller和url映射关系
 有时候需要根据url反查controller，如果能获取所有的url，则不用跟据url去代码里搜了，方便开发人员、调试人员或交接人。
+
 关键对象：RequestMappingHandlerMapping 
 
 ```java

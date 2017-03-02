@@ -60,6 +60,7 @@ static int hash(int h) {
 
 #### 2、取模优化
 计算hash值后，怎么才能保证table元素分布均与呢？我们会想到取模，但是由于取模的消耗较大，HashMap是这样处理的：调用indexFor方法。
+
 由于取模（除完取整）本身耗能太大（因为取模是多次的加法或减法，所以耗能很大），HashMap采用下面方式实现取模，效率极大提高。
 
 ```java
@@ -69,15 +70,19 @@ static int indexFor(int h, int length) {
 ```
 
 HashMap的底层数组长度总是2的n次方，在构造函数中存在：capacity <<= 1;这样做总是能够保证HashMap的底层数组长度为2的n次方。
+
 当length为2的n次方时，h&(length - 1)就相当于对length取模，而且速度比直接取模快得多，这是HashMap在速度上的一个优化。 
 
 注：indexFor方法，仅有一条语句：h&(length - 1)，这句话除了上面的取模运算外还有一个非常重要的责任：均匀分布table数据和充分利用空间。
+
 当length = 2^n时，不同的hash值发生碰撞的概率比较小，这样就会使得数据在table数组中分布较均匀，查询速度也较快。
     
 #### 3、如何扩容时，保证数组容量为2的整数次幂？？？
 由上面可知，数组容量（即length）为2的n次方时，HashMap hash出的元素分布才比较均匀，性能才比较高。
-那如何保证每次扩容后，容量都是2的整数次幂？
-答：每次扩容为原来长度的两倍。
+
+>那如何保证每次扩容后，容量都是2的整数次幂？
+
+>答：每次扩容为原来长度的两倍。
 
 ```java
 void addEntry(int hash, K key, V value, int bucketIndex) {  
@@ -93,7 +98,8 @@ void addEntry(int hash, K key, V value, int bucketIndex) {
 随着HashMap中元素的数量越来越多，发生碰撞的概率就越来越大，所产生的链表长度就会越来越长，这样势必会影响HashMap的速度，为了保证HashMap的效率，系统必须要在某个临界点进行扩容处理。该临界点在当HashMap中元素的数量等于table数组长度*加载因子。但是扩容是一个非常耗时的过程，因为它需要重新计算这些数据在新table数组中的位置并进行复制处理。所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。
 
 #### 4、hash相同的，链表存储，新元素总是插入到表头
-系统总是将新的Entry对象添加到bucketIndex处。如果bucketIndex处已经有了对象，那么新添加的Entry对象将指向原有的Entry对象，形成一条Entry链，但是若bucketIndex处没有Entry对象，也就是e==null,那么新添加的Entry对象指向null，也就不会产生Entry链了。   
+系统总是将新的Entry对象添加到bucketIndex处。如果bucketIndex处已经有了对象，那么新添加的Entry对象将指向原有的Entry对象，形成一条Entry链，但是若bucketIndex处没有Entry对象，也就是e==null,那么新添加的Entry对象指向null，也就不会产生Entry链了。
+
  bucketIndex：即桶的位置，也就是0-15其中之一。（HashMap初始容量是16，也就是16个桶）
 
 ```java
