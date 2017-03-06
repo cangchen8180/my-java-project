@@ -1,4 +1,4 @@
-package com.jimi.java._interview.algorithm.LRU_LFU;
+package com.jimi.java._interview.algorithm.LRU_LFU.likeEHCache;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
