@@ -4,6 +4,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.util.Enumeration;
 
@@ -16,9 +17,18 @@ public class ModifyLogLevel {
 
     public static void main(String[] args) {
 
+
+        String hostName = "serverHostName";
+        //注意：MDC和NDC都是线程独立的
+        MDC.put(hostName, "localhost-jimi");
+        logger.info("========= info ===============");
+        MDC.remove(hostName);
+
+        // ================================================= 动态修改log级别 =========================================================
         logger.info("========= info ===============");
         logger.debug("========= debug ===============");
-/*
+
+        /*
         动态修改日志级别
          */
         //获取logger框架中当前日志实例

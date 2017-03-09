@@ -1,6 +1,8 @@
 package com.jimi.java._interview.jvm;
 
 /**
+ * 发生栈溢出{@link StackOverflowError}的实例
+ *
  * Created by lagou on 2017/3/7.
  */
 public class SOFETest {
