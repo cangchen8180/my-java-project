@@ -51,6 +51,11 @@ public class CollectionTest {
 
 
         System.out.println("16 >> 1 = " + (16 >> 1));
+
+        //=================== TreeSet源码 ====================
+        Set<String> treeSet = new TreeSet<>();
+
+
     }
 }
 
