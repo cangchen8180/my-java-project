@@ -56,6 +56,17 @@ public class CollectionTest {
         Set<String> treeSet = new TreeSet<>();
 
 
+        int i = 0;
+
+        System.out.println("Integer.SIZE = " + Integer.SIZE);
+        System.out.println("Byte.SIZE = " + Byte.SIZE);
+        System.out.println("Double.SIZE = " + Double.SIZE);
+
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+
+        System.out.println("1<<5 = " + (1 << 5));
     }
 }
 
