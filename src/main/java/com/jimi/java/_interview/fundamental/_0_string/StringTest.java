@@ -44,23 +44,45 @@ public class StringTest {
         如何做到的？
         答：参 http://zhangtielei.com/posts/blog-redis-sds.html
          */
-        String set1 = jedis.set(idStr, idStr);
+        /*String set1 = jedis.set(idStr, idStr);
         String set = jedis.set(bytes, bytes);
         System.out.println("idStr.getBytes() = " + bytes);
-        System.out.println("idStr.getBytes() = " + bytes.toString());
+        System.out.println("idStr.getBytes() = " + bytes.toString());*/
 
 
         ///////////////////// String 字符串取等 ////////////////////
         String str = "hcTest";
         System.out.println("str.hashCode() = " + str.hashCode());
 
+        String s1 = "abc";
+        String s2 = "a";
+        String s3 = "bc";
+        String s4 = s2 + s3;
+        //false，因为s2+s3实际上是使用StringBuilder.append来完成，会生成不同的对象。
+        System.out.println(s1 == s4);
+
+        String s11 = "abc";
+        final String s21 = "a";
+        final String s31 = "bc";
+        String s41 = s21 + s31;
+        //true，因为final变量在编译后会直接替换成对应的值，所以实际上等于s4=”a”+”bc”，而这种情况下，编译器会直接合并为s4=”abc”，所以最终s1==s4。
+        System.out.println(s11 == s41);
+
         String strHellAndO = new String("hell") + new String("o");
         String strIntern = strHellAndO.intern();
         String strHello = "hello";
+        String strHello1 = "hell" + new String("o");
+
+        //////////////////// 为什么是false???????? /////////////////////////
+        System.out.println("strHello == strHello1 = " + (strHello == strHello1));
+        System.out.println("strHello ==strHello1 = " + strHello == strHello1 ? "" : "1");
 
         System.out.println("strHellAndO == strIntern = " + (strHellAndO == strIntern));
-        System.out.println("strIntern ==strHello= " + (strIntern == strHello));
+
+        //////////////////// 为什么是true???????? /////////////////////////
         System.out.println("strHello == strHellAndO = " + (strHello == strHellAndO));
+        //////////////////// 为什么是true???????? /////////////////////////
+        System.out.println("strHello== strIntern = " + (strIntern == strHello));
 
         ///////////////////// String hashCode算法 ////////////////////
         System.out.println("\"ji\".hashCode() = " + "ji".hashCode());

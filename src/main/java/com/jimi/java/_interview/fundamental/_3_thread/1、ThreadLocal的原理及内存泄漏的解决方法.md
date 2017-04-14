@@ -65,6 +65,35 @@ ThreadLocal的set()方法源码如下，get()/remove()类似，
 
 其中，ThreadLocal实例作为key传入ThreadLocalMap，是为了利用ThreadLocal实例的hash值确定ThreadLocal实例保存的值在table数组中的位置（`int i = key.threadLocalHashCode & (len-1);`）。
 
+>ThreadLocalMap内部是如何存一个线程下的多个ThreadLocal对象的？
+
+是使用每个ThreadLocal对象的threadLocalHashCode取模来确定存在ThreadLocalMap内部数组中的位置，而threadLocalHashCode是在ThreadLocal对象创建时使用内部静态方法nextHashCode()自动赋值的，这个每个ThreadLocal对象的threadLocalHashCode都是不同的。
+
+其中，HASH_INCREMENT是一个常量，表示了连续分配的两个ThreadLocal实例的threadLocalHashCode值的增量。
+
+```
+public class ThreadLocal<T> {
+    private final int threadLocalHashCode = nextHashCode();
+
+    private static AtomicInteger nextHashCode =
+        new AtomicInteger();
+
+    /**
+     * The difference between successively generated hash codes - turns
+     * implicit sequential thread-local IDs into near-optimally spread
+     * multiplicative hash values for power-of-two-sized tables.
+     */
+    private static final int HASH_INCREMENT = 0x61c88647;
+
+    /**
+     * Returns the next hash code.
+     */
+    private static int nextHashCode() {
+        return nextHashCode.getAndAdd(HASH_INCREMENT);
+    }
+}
+```
+
 > 如果位置发生冲突怎么办？
 
 > ThreadLocalMap会采用线性探测法（不断加1）。
@@ -104,7 +133,7 @@ static class Entry extends WeakReference<ThreadLocal> {
 弱引用的作用，参考[2、强引用、软引用、弱引用和虚引用的区别.md](2、强引用、软引用、弱引用和虚引用的区别.md)
 
 ### ThreadLocal是否为造成内存泄漏？
-ThreadLocalMap使用ThreadLocal的弱引用作为key，如果一个ThreadLocal没有外部强引用来引用它，那么系统 GC 的时候，这个ThreadLocal势必会被回收，这样一来，ThreadLocalMap中就会出现key为null的Entry，就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话，这些key为null的Entry的value就会一直存在一条强引用链：Thread Ref -> Thread -> ThreaLocalMap -> Entry -> value永远无法回收，造成内存泄漏。
+ThreadLocalMap使用ThreadLocal的弱引用作为key，如果一个ThreadLocal没有外部强引用来引用它，那么系统 GC 的时候，这个ThreadLocal势必会被回收，这样一来，ThreadLocalMap中就会出现key为null的Entry，就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话，这些key为null的Entry的value就会一直存在一条强引用链：Thread Ref -> Thread -> ThreadLocalMap -> Entry -> value永远无法回收，造成内存泄漏。
 
 > 如何避免内存泄漏？
 

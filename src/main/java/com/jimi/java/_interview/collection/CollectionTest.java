@@ -2,6 +2,7 @@ package com.jimi.java._interview.collection;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *  常用集合对比
@@ -66,7 +67,24 @@ public class CollectionTest {
 
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
 
+        ReentrantLock lock = new ReentrantLock();
+        // tryLock作用，和lock的区别
+        lock.tryLock();
+        lock.lock();
+
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.add(1);
+        queue.peek();
+
+        Vector<Integer> vector = new Vector<>();
+        vector.add(1);
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.pop();
+
         System.out.println("1<<5 = " + (1 << 5));
+
     }
 }
 
