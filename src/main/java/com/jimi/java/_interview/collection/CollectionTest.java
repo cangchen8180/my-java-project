@@ -56,6 +56,7 @@ public class CollectionTest {
         //=================== TreeSet源码 ====================
         Set<String> treeSet = new TreeSet<>();
 
+        Object o = new Object();
 
         int i = 0;
 
@@ -64,6 +65,7 @@ public class CollectionTest {
         System.out.println("Double.SIZE = " + Double.SIZE);
 
         HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("key1", "value22");
 
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
 
