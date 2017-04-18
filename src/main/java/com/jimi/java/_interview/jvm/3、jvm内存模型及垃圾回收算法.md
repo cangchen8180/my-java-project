@@ -201,3 +201,5 @@ Jvm(Java虚拟机)主要管理两种类型内存：堆和非堆。
     两者作用相同，System.gc内部就是调用的Runtime.getRuntime().gc()。
 
     程序员可以手动执行System.gc()，通知GC运行，但是Java语言规范并不保证GC一定会执行。只是 **建议**JVM安排GC运行, 还有可能完全被拒绝。
+
+参考[这里](http://blog.csdn.net/timmobile/article/details/49452921)
