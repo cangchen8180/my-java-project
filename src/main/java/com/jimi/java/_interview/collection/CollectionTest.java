@@ -58,6 +58,26 @@ public class CollectionTest {
 
         Object o = new Object();
 
+        HashSet<String> hashSet = new HashSet<>(1);
+        hashSet.add("Jimi");
+        hashSet.add("Jimi");
+        System.out.println("hashSet = " + hashSet);
+        Iterator<String> iteratorSet = hashSet.iterator();
+
+        HashMap<String, String> hashMap1 = new HashMap<>(2);
+        hashMap1.put("test", null);
+        Set<Map.Entry<String, String>> entries1 = hashMap1.entrySet();
+        hashMap1.put("test2", null);
+        Set<Map.Entry<String, String>> entries = hashMap1.entrySet();
+
+        Object[] entriesObject = entries.toArray();
+
+        Iterator<Map.Entry<String, String>> entryIterator = entries.iterator();
+
+        System.out.println("null == null = " + (null == null));
+
+        System.out.println("hashMap1 = " + hashMap1);
+
         int i = 0;
 
         System.out.println("Integer.SIZE = " + Integer.SIZE);
