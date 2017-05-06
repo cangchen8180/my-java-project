@@ -93,15 +93,55 @@ public class CountListIntegerSumForCountdownLatch {
 
     public static void main(String[] args) {
         int initCap = 100000;
-        List<Integer> integerList = new ArrayList<>(initCap);
-        for (int i = 0; i < initCap; i++) {
-            integerList.add(i + 1);
-        }
+        System.out.println("total = " + getTotal(initCap));
 
         CountListIntegerSumForCountdownLatch countListIntegerSum = new CountListIntegerSumForCountdownLatch();
-        long sum = countListIntegerSum.countSum(integerList);
 
         //正确结果：5000050000
-        System.out.println("sum = " + sum);
+        System.out.println("sum = " + countListIntegerSum.countSum(getIntegers(initCap)));
+    }
+
+    private static List<Integer> getIntegers(int initCap) {
+        List<Integer> integerList = new ArrayList<>(initCap);
+        int temp;
+        if (result() > 10) {
+            temp = 0;
+            temp = result() * 3;
+            return integerList;
+        }
+        temp = result() * 1;
+        return integerList;
+        /*for (int i = 0; i < initCap; i++) {
+            integerList.add(i + 1);
+        }
+        return integerList;*/
+    }
+
+    private static int result() {
+        return 5 * 10;
+    }
+
+    private static int getTotal(int initCap) {
+        int total = 0;
+        for (int i = 0; i < initCap; i++) {
+            total += i;
+        }
+        return total;
+    }
+}
+
+class Test{
+    private int id;
+
+    public Test(int id) {
+        this.setId(id);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
