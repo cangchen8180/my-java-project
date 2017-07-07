@@ -1,7 +1,7 @@
 /**
  * simple sql parser
  *
- * now support this statement:
+ * now supported statements:
  *  select
  *  create
  *  insert
